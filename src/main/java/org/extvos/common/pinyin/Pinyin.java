@@ -286,8 +286,13 @@ public class Pinyin {
     public static void main(String[] args) {
         try {
             Pinyin py = new Pinyin();
-            System.out.println("  >> " + py.translate("中华人民共和国"));
-            System.out.println("  >> " + py.translateFirstChar("中华人民共和国"));
+            String s1 = py.translate("南鹞北鹰");
+            System.out.println("  >> " + s1);
+            System.out.println("  >> " + py.translateNoMark("南阳市"));
+            System.out.println("  >> " + py.translateWithSep("南阳市"));
+            System.out.println("  >> " + py.translateNoMark("南阳"));
+            System.out.println("  >> " + py.translateFirstChar("南阳市"));
+            System.out.println("  >> " + py.translateFirstChar("南阳"));
 
             for (String arg : py.translateInArray("中国人民解放军")) {
                 System.out.println("  >> " + arg);

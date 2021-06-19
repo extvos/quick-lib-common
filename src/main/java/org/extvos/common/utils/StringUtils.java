@@ -15,6 +15,8 @@
  */
 package org.extvos.common.utils;
 
+import org.extvos.common.Validator;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -138,5 +140,27 @@ public class StringUtils extends cn.hutool.core.util.StrUtil {
                 return ss;
             }
         }
+    }
+
+    /**
+     * Build whole url from parts
+     *
+     * @param base base server url maybe
+     * @param parts strings
+     * @return whole url string
+     */
+    public static String buildUrl(String base, String... parts) {
+        String us = "";
+
+        if (Validator.notEmpty(base)) {
+            us = strip(base, "", "/");
+        }
+        for (String p : parts) {
+            if (Validator.isEmpty(p)) {
+                continue;
+            }
+            us = us + addPrefixIfNot(p, "/");
+        }
+        return us;
     }
 }
