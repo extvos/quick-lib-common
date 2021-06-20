@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author shenmc
+ * @author Mingcai SHEN
  */
 public class QrCode {
     public static class Generator {

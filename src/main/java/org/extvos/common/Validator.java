@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * @author shenmc
+ * @author Mingcai SHEN
  */
 public class Validator {
     public static boolean equals(Object o, Object v) {

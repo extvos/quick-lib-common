@@ -26,7 +26,7 @@ import java.nio.charset.StandardCharsets;
  * 加密
  *
  * @author Mingcai SHEN
- * @date 2018-11-23
+ * 
  */
 
 public class EncryptUtils {

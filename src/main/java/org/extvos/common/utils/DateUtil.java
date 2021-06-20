@@ -22,7 +22,7 @@ import java.util.Date;
 
 /**
  * @author Mingcai SHEN
- * @date: 2020/6/11 16:28
+ * 
  * @apiNote: JDK 8  新日期类 格式化与字符串转换 工具类
  */
 public class DateUtil {

@@ -23,7 +23,7 @@ import java.text.DecimalFormat;
  * File工具类，扩展 hutool 工具包
  *
  * @author Mingcai SHEN
- * @date 2018-12-27
+ * 
  */
 public class FileUtil {
 

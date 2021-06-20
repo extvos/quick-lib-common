@@ -2,7 +2,7 @@ package org.extvos.common.utils;
 
 
 /**
- * @author shenmc
+ * @author Mingcai SHEN
  */
 public class PrimitiveConvert {
     public static class Convertor {

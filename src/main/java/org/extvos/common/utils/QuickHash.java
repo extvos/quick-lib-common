@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * @author shenmc
+ * @author Mingcai SHEN
  */
 public class QuickHash {
     private MessageDigest digest;
