@@ -1,4 +1,4 @@
-package org.extvos.common.utils;
+package plus.extvos.common.utils;
 
 import javax.crypto.Cipher;
 import java.security.*;

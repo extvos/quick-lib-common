@@ -1,4 +1,4 @@
-package org.extvos.common.geo;
+package plus.extvos.common.geo;
 
 /**
  * Segment 线段（分段），两个点之间的直线

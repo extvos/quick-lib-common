@@ -1,4 +1,4 @@
-package org.extvos.common.geo;
+package plus.extvos.common.geo;
 
 /**
  * @author Mingcai SHEN

@@ -1,4 +1,4 @@
-package org.extvos.common;
+package plus.extvos.common;
 
 import java.util.Collection;
 import java.util.Map;

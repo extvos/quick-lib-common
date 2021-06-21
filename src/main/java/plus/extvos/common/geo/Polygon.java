@@ -1,4 +1,4 @@
-package org.extvos.common.geo;
+package plus.extvos.common.geo;
 
 import java.util.LinkedList;
 import java.util.List;

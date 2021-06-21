@@ -41,10 +41,10 @@
 
 ## 基础工具类
 
-- `org.extvos.common.utils.QrCode`
-- `org.extvos.common.utils.QuickHash`
-- `org.extvos.common.pinyin.Pinyin`
-- `org.extvos.common.geo.Polygon`
-- `org.extvos.common.geo.Quadrangle`
-- `org.extvos.common.geo.Segment`
-- `org.extvos.common.geo.Triangle`
+- `plus.extvos.common.utils.QrCode`
+- `plus.extvos.common.utils.QuickHash`
+- `plus.extvos.common.pinyin.Pinyin`
+- `plus.extvos.common.geo.Polygon`
+- `plus.extvos.common.geo.Quadrangle`
+- `plus.extvos.common.geo.Segment`
+- `plus.extvos.common.geo.Triangle`
