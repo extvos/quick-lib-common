@@ -145,7 +145,7 @@ public class StringUtils extends cn.hutool.core.util.StrUtil {
     /**
      * Build whole url from parts
      *
-     * @param base base server url maybe
+     * @param base  base server url maybe
      * @param parts strings
      * @return whole url string
      */

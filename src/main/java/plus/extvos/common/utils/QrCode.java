@@ -2,7 +2,6 @@ package plus.extvos.common.utils;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
-import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageConfig;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
@@ -13,7 +12,6 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,21 +27,25 @@ public class QrCode {
         private String format = "png";
         private String contents;
 
-        private Generator() {}
+        private Generator() {
+        }
 
-        public Generator size(int s){
+        public Generator size(int s) {
             size = s;
             return this;
         }
-        public Generator color(int c){
+
+        public Generator color(int c) {
             frontColor = c;
             return this;
         }
-        public Generator background(int c){
+
+        public Generator background(int c) {
             bgColor = c;
             return this;
         }
-        public Generator format(String f){
+
+        public Generator format(String f) {
             format = f;
             return this;
         }
@@ -83,10 +85,24 @@ public class QrCode {
         }
     }
 
-    public static Generator format(String f){ return new Generator().format(f); }
-    public static Generator content(String f){ return new Generator().content(f); }
-    public static Generator size(int s){ return new Generator().size(s); }
-    public static Generator color(int s){ return new Generator().color(s); }
-    public static Generator background(int s){ return new Generator().background(s); }
+    public static Generator format(String f) {
+        return new Generator().format(f);
+    }
+
+    public static Generator content(String f) {
+        return new Generator().content(f);
+    }
+
+    public static Generator size(int s) {
+        return new Generator().size(s);
+    }
+
+    public static Generator color(int s) {
+        return new Generator().color(s);
+    }
+
+    public static Generator background(int s) {
+        return new Generator().background(s);
+    }
 
 }
