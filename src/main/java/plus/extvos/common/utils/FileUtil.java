@@ -15,15 +15,16 @@
  */
 package plus.extvos.common.utils;
 
-import java.io.*;
-
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.DecimalFormat;
 
 /**
  * File工具类，扩展 hutool 工具包
  *
  * @author Mingcai SHEN
- * 
  */
 public class FileUtil {
 

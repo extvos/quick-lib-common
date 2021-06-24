@@ -26,7 +26,6 @@ import java.nio.charset.StandardCharsets;
  * 加密
  *
  * @author Mingcai SHEN
- * 
  */
 
 public class EncryptUtils {
