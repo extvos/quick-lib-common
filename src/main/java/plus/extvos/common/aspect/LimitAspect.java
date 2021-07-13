@@ -28,7 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import plus.extvos.common.annotation.Limit;
 import plus.extvos.common.exception.ResultException;
-import plus.extvos.common.LimitCounterService;
+import plus.extvos.common.service.LimitCounterService;
 import plus.extvos.common.utils.RequestContext;
 
 import java.lang.reflect.Method;

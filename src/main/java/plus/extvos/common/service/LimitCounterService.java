@@ -1,4 +1,4 @@
-package plus.extvos.common;
+package plus.extvos.common.service;
 
 import java.util.List;
 
