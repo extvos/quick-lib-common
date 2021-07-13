@@ -31,8 +31,11 @@ import java.lang.reflect.Method;
 @RestControllerAdvice
 public class ResultAdvice implements ResponseBodyAdvice<Object> {
 
-
     private static final Logger log = LoggerFactory.getLogger(ResultAdvice.class);
+
+//    public ResultAdvice() {
+//        log.debug("ResultAdvice::> constructed!");
+//    }
 
     /**
      * Generic Exception process
@@ -40,7 +43,7 @@ public class ResultAdvice implements ResponseBodyAdvice<Object> {
     @ExceptionHandler(value = {NestedRuntimeException.class, ResultException.class})
     public Result<?> exception(HttpServletRequest request, Exception e, HandlerMethod handlerMethod) {
         log.warn("exception:> {} {} ({}) > {}",
-            request.getMethod(), request.getRequestURI(), handlerMethod.getMethod().getName(), e.getMessage());
+                request.getMethod(), request.getRequestURI(), handlerMethod.getMethod().getName(), e.getMessage());
         if (e instanceof ResultException) {
             return ((ResultException) e).asResult();
         }
@@ -63,6 +66,7 @@ public class ResultAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
+        log.debug("ResultAdvice::supports:> {} {}", returnType.getMethod().getName(), converterType.getName());
         Method method = returnType.getMethod();
         assert method != null;
         return method.getReturnType() == Result.class;
@@ -72,13 +76,13 @@ public class ResultAdvice implements ResponseBodyAdvice<Object> {
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType,
                                   Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request,
                                   ServerHttpResponse response) {
-//        log.debug("beforeBodyWrite:> {} {}: {} ({})",
-//            request.getMethod(), request.getURI(), body != null ? body.getClass().getSimpleName() : "null",
-//            selectedContentType.toString());
+        log.debug("beforeBodyWrite:> {} {}: {} ({})",
+            request.getMethod(), request.getURI(), body != null ? body.getClass().getSimpleName() : "null",
+            selectedContentType.toString());
         // Set response status code according the result status code.
         if (body instanceof Result) {
             Result<?> rs = (Result<?>) body;
-//            log.debug("beforeBodyWrite:> {},{}", (Result<?>) body, ((Result<?>) body).getCode());
+            log.debug("beforeBodyWrite:> {},{}", (Result<?>) body, ((Result<?>) body).getCode());
             if (rs.getHeaders() != null) {
                 rs.getHeaders().forEach((k, v) -> {
                     response.getHeaders().add(k, v);
