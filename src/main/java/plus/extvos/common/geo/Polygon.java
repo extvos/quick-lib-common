@@ -9,11 +9,11 @@ import java.util.List;
 public class Polygon {
 
     public static Point max(Point p1, Point p2) {
-        return p1.lat.compareTo(p2.lat) > 0 ? p1 : p2;
+        return p1.x.compareTo(p2.x) > 0 ? p1 : p2;
     }
 
     public static Point min(Point p1, Point p2) {
-        return p1.lat.compareTo(p2.lat) < 0 ? p1 : p2;
+        return p1.x.compareTo(p2.x) < 0 ? p1 : p2;
     }
 
     public static Double max(Double d1, Double d2) {
@@ -94,7 +94,7 @@ public class Polygon {
         int s2 = pts.size();
 
         pts.forEach((Point pt) -> {
-            System.out.printf("new BMapGL.Point(%f, %f),\n", pt.lat, pt.lng);
+            System.out.printf("new BMapGL.Point(%f, %f),\n", pt.x, pt.y);
         });
         System.out.println("Original points: " + s1 + "/" + t1);
         System.out.println("New points: " + s2 + "/" + t2);

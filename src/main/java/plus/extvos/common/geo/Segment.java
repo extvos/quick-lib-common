@@ -17,7 +17,7 @@ public class Segment {
     public final Point b;
 
     public Segment(Point p1, Point p2) {
-        int lat = p1.lat.compareTo(p2.lat);
+        int lat = p1.x.compareTo(p2.x);
         if (lat > 0) {
             a = p2;
             b = p1;
@@ -25,7 +25,7 @@ public class Segment {
             a = p1;
             b = p2;
         } else {
-            if (p1.lng.compareTo(p2.lng) > 0) {
+            if (p1.y.compareTo(p2.y) > 0) {
                 a = p2;
                 b = p1;
             } else {
@@ -36,13 +36,13 @@ public class Segment {
     }
 
     public Double tan() {
-        if (a.lat.compareTo(b.lat) == 0) {
+        if (a.x.compareTo(b.x) == 0) {
             return 0.0;
         }
-        if (a.lng.compareTo(b.lng) == 0) {
+        if (a.y.compareTo(b.y) == 0) {
             return 1.0;
         }
-        return (b.lat - a.lat) / (b.lng - a.lng);
+        return (b.x - a.x) / (b.y - a.y);
     }
 
     /**
@@ -66,8 +66,8 @@ public class Segment {
             return new Point(0.0, 0.0);
         } else {
             Double x, y;
-            x = (l2.b.lng - this.b.lng + this.b.lat * ((this.b.lng - this.a.lng) / (this.b.lat - this.a.lat)) - l2.b.lat * ((l2.b.lng - l2.a.lng) / (l2.b.lat - l2.a.lat))) / ((this.b.lng - this.a.lng) / (this.b.lat - this.a.lat) - (l2.b.lng - l2.a.lng) / (l2.b.lat - l2.a.lat));
-            y = (l2.b.lat - this.b.lat + this.b.lng * ((this.b.lat - this.a.lat) / (this.b.lng - this.a.lng)) - l2.b.lng * ((l2.b.lat - l2.a.lat) / (l2.b.lng - l2.a.lng))) / ((this.b.lat - this.a.lat) / (this.b.lng - this.a.lng) - (l2.b.lat - l2.a.lat) / (l2.b.lng - l2.a.lng));
+            x = (l2.b.y - this.b.y + this.b.x * ((this.b.y - this.a.y) / (this.b.x - this.a.x)) - l2.b.x * ((l2.b.y - l2.a.y) / (l2.b.x - l2.a.x))) / ((this.b.y - this.a.y) / (this.b.x - this.a.x) - (l2.b.y - l2.a.y) / (l2.b.x - l2.a.x));
+            y = (l2.b.x - this.b.x + this.b.y * ((this.b.x - this.a.x) / (this.b.y - this.a.y)) - l2.b.y * ((l2.b.x - l2.a.x) / (l2.b.y - l2.a.y))) / ((this.b.x - this.a.x) / (this.b.y - this.a.y) - (l2.b.x - l2.a.x) / (l2.b.y - l2.a.y));
             return new Point(x, y);
         }
     }
@@ -91,7 +91,7 @@ public class Segment {
     }
 
     public boolean outsideBox(Point p) {
-        return (p.lat < Polygon.min(a.lat, b.lat) || p.lat > Polygon.max(a.lat, b.lat)) || (p.lng < Polygon.min(a.lng, b.lng) || p.lng > Polygon.max(a.lng, b.lng));
+        return (p.x < Polygon.min(a.x, b.x) || p.x > Polygon.max(a.x, b.x)) || (p.y < Polygon.min(a.y, b.y) || p.y > Polygon.max(a.y, b.y));
     }
 
     public boolean outsideBox(Segment l2) {
@@ -99,7 +99,7 @@ public class Segment {
     }
 
     public boolean insideBox(Point p) {
-        return ((p.lat >= Polygon.min(a.lat, b.lat) && p.lat <= Polygon.max(a.lat, b.lat)) && (p.lng >= Polygon.min(a.lng, b.lng) && p.lng <= Polygon.max(a.lng, b.lng)));
+        return ((p.x >= Polygon.min(a.x, b.x) && p.x <= Polygon.max(a.x, b.x)) && (p.y >= Polygon.min(a.y, b.y) && p.y <= Polygon.max(a.y, b.y)));
     }
 
     public boolean insideBox(Segment l2) {
@@ -107,10 +107,10 @@ public class Segment {
     }
 
     public boolean outside(Segment l2) {
-        return Polygon.min(l2.a.lat, l2.b.lat) > Polygon.max(a.lat, b.lat)
-            || Polygon.max(l2.a.lat, l2.b.lat) < Polygon.min(a.lat, b.lat)
-            || Polygon.min(l2.a.lng, l2.b.lng) > Polygon.max(a.lng, b.lng)
-            || Polygon.max(l2.a.lng, l2.b.lng) < Polygon.min(a.lng, b.lng);
+        return Polygon.min(l2.a.x, l2.b.x) > Polygon.max(a.x, b.x)
+            || Polygon.max(l2.a.x, l2.b.x) < Polygon.min(a.x, b.x)
+            || Polygon.min(l2.a.y, l2.b.y) > Polygon.max(a.y, b.y)
+            || Polygon.max(l2.a.y, l2.b.y) < Polygon.min(a.y, b.y);
     }
 
     /**
@@ -147,7 +147,7 @@ public class Segment {
     }
 
     public static double getDistance(Point p1, Point p2) {
-        return getDistance(p1.lat, p1.lng, p2.lat, p2.lng);
+        return getDistance(p1.x, p1.y, p2.x, p2.y);
     }
 
     public static double getDistance(Point... points) {
