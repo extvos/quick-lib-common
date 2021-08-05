@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.ConversionNotSupportedException;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.NestedRuntimeException;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,8 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.HandlerMethod;
@@ -23,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Method;
+import java.util.stream.Collectors;
 
 
 /**
@@ -40,7 +44,7 @@ public class ResultAdvice implements ResponseBodyAdvice<Object> {
     /**
      * Generic Exception process
      */
-    @ExceptionHandler(value = {NestedRuntimeException.class, ResultException.class})
+    @ExceptionHandler(value = {NestedRuntimeException.class, ResultException.class, MethodArgumentNotValidException.class})
     public Result<?> exception(HttpServletRequest request, Exception e, HandlerMethod handlerMethod) {
         log.warn("exception:> {} {} ({}) > {}",
                 request.getMethod(), request.getRequestURI(), handlerMethod.getMethod().getName(), e.getMessage());
@@ -55,6 +59,11 @@ public class ResultAdvice implements ResponseBodyAdvice<Object> {
         }
         if (e instanceof ConversionNotSupportedException) {
             return Result.message("Invalid request queries").failure(ResultCode.BAD_REQUEST);
+        }
+        if (e instanceof MethodArgumentNotValidException) {
+            MethodArgumentNotValidException ee = (MethodArgumentNotValidException) e;
+            String errorMsg = ee.getBindingResult().getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.joining(";\n"));
+            return Result.message(errorMsg).failure(ResultCode.BAD_REQUEST);
         }
         Result<?> r = Result.message("Unknown internal server error").failure(ResultCode.INTERNAL_SERVER_ERROR);
         StringWriter writer = new StringWriter();
@@ -77,8 +86,8 @@ public class ResultAdvice implements ResponseBodyAdvice<Object> {
                                   Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request,
                                   ServerHttpResponse response) {
         log.debug("beforeBodyWrite:> {} {}: {} ({})",
-            request.getMethod(), request.getURI(), body != null ? body.getClass().getSimpleName() : "null",
-            selectedContentType.toString());
+                request.getMethod(), request.getURI(), body != null ? body.getClass().getSimpleName() : "null",
+                selectedContentType.toString());
         // Set response status code according the result status code.
         if (body instanceof Result) {
             Result<?> rs = (Result<?>) body;
