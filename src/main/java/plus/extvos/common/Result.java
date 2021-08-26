@@ -178,6 +178,11 @@ public class Result<T> implements Serializable {
         return this;
     }
 
+    public Result<T> with(T o) {
+        this.data = o;
+        return this;
+    }
+
     public Result<T> success() {
         return success(ResultCode.OK);
     }

@@ -9,11 +9,18 @@ import plus.extvos.common.Result;
  */
 public class ResultException extends RuntimeException {
     private final Code code;
+    private final Object data;
 
     public ResultException(Code c, String m) {
         super(m);
         code = c;
+        data = null;
+    }
 
+    public ResultException(Code c, String m, Object d) {
+        super(m);
+        code = c;
+        data = d;
     }
 
     /**
@@ -22,7 +29,7 @@ public class ResultException extends RuntimeException {
      * @return Result<?>
      */
     public Result<?> asResult() {
-        return Result.message(getMessage()).failure(code);
+        return Result.message(getMessage()).with(data).failure(code);
     }
 
     /**
@@ -32,6 +39,15 @@ public class ResultException extends RuntimeException {
      */
     public Code getCode() {
         return code;
+    }
+
+
+    public static ResultException make(Code c, String m) {
+        return new ResultException(c, m);
+    }
+
+    public static ResultException make(Code c, String m, Object d) {
+        return new ResultException(c, m, d);
     }
 
     /**
