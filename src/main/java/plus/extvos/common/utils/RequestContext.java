@@ -2,10 +2,13 @@ package plus.extvos.common.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -16,6 +19,8 @@ public class RequestContext {
     private final Logger log = LoggerFactory.getLogger(RequestContext.class);
 
     private final HttpServletRequest request;
+
+    private static String LANGUAGE_HEADER = "Accept-Language";
 
     protected RequestContext(HttpServletRequest req) {
         request = req;
@@ -48,5 +53,34 @@ public class RequestContext {
 
     public String getRequestURI() {
         return request.getRequestURI();
+    }
+
+//    public static HttpServletRequest getHttpServletRequest() {
+//        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) getRequestAttributes();
+//        return requestAttributes.getRequest();
+//    }
+
+    public HttpSession getHttpSession() {
+        return request.getSession();
+    }
+
+
+    public Locale getLanguageLocaleByHttpHeader() {
+//        HttpServletRequest request = getHttpServletRequest();
+
+        String header = request.getHeader(LANGUAGE_HEADER);
+//        log.debug("getLanguageLocaleByHttpHeader:> Header: {}", header);
+        if (null != header && !header.isEmpty()) {
+            Locale locale = Locale.forLanguageTag(header.replace("_", "-"));
+//            log.debug("getLanguageLocaleByHttpHeader:> Locale: {}", locale);
+            if (locale != null) {
+                return locale;
+            }
+        }
+        return Locale.getDefault();
+    }
+
+    public static void setLanguageHeaderName(String languageHeaderName) {
+        LANGUAGE_HEADER = languageHeaderName;
     }
 }
