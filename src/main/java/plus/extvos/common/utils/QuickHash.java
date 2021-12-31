@@ -1,6 +1,8 @@
 package plus.extvos.common.utils;
 
 import cn.hutool.core.util.HexUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileReader;
@@ -9,6 +11,7 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -18,6 +21,8 @@ import java.util.Random;
  */
 public class QuickHash {
     private MessageDigest digest;
+
+    private final static Logger log = LoggerFactory.getLogger(QuickHash.class);
 
 
     public static QuickHash md5() {
@@ -40,7 +45,8 @@ public class QuickHash {
         try {
             digest = MessageDigest.getInstance(algorithm);
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+
+            log.error(">>", e);
         }
     }
 
@@ -49,6 +55,28 @@ public class QuickHash {
         byte[] bf = new byte[16];
         rd.nextBytes(bf);
         this.hash(bf);
+        return this;
+    }
+
+    public QuickHash update(byte[] in) {
+        if (null != digest) {
+            digest.update(in);
+        }
+        return this;
+    }
+
+    public QuickHash update(byte[] in, int off, int len) {
+        if (in == null) {
+            throw new NullPointerException();
+        } else if ((off < 0) || (off > in.length) || (len < 0) ||
+                ((off + len) > in.length) || ((off + len) < 0)) {
+            throw new IndexOutOfBoundsException();
+        } else if (len == 0) {
+            return this;
+        }
+        if (null != digest) {
+            digest.update(Arrays.copyOfRange(in, off, len));
+        }
         return this;
     }
 
