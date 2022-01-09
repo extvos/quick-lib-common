@@ -20,6 +20,8 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * File工具类，扩展 hutool 工具包
@@ -133,17 +135,17 @@ public class FileUtil {
     }
 
     public static String getFileType(String type) {
-        String documents = "txt doc pdf ppt pps xlsx xls docx";
-        String music = "mp3 wav wma mpa ram ra aac aif m4a";
-        String video = "avi mpg mpe mpeg asf wmv mov qt rm mp4 flv m4v webm ogv ogg";
-        String image = "bmp dib pcp dif wmf gif jpg tif eps psd cdr iff tga pcd mpt png jpeg";
-        if (image.contains(type)) {
+        String[] documents = "txt doc pdf ppt pps xlsx xls docx".split(" ");
+        String[] music = "mp3 wav wma mpa ram ra aac aif m4a".split(" ");
+        String[] video = "avi mpg mpe mpeg asf wmv mov qt rm mp4 flv m4v webm ogv ogg".split(" ");
+        String[] image = "bmp dib pcp dif wmf gif jpg tif eps psd cdr iff tga pcd mpt png jpeg".split(" ");
+        if (Arrays.asList(image).contains(type)) {
             return IMAGE;
-        } else if (documents.contains(type)) {
+        } else if (Arrays.asList(documents).contains(type)) {
             return TXT;
-        } else if (music.contains(type)) {
+        } else if (Arrays.asList(music).contains(type)) {
             return MUSIC;
-        } else if (video.contains(type)) {
+        } else if (Arrays.asList(video).contains(type)) {
             return VIDEO;
         } else {
             return OTHER;

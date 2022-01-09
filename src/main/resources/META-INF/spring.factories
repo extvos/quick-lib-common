@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+plus.extvos.common.config.LocaleConfig,\
+plus.extvos.common.ResultAdvice,\
+plus.extvos.common.aspect.LimitAspect

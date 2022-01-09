@@ -16,11 +16,11 @@ public class Validator {
     }
 
     public static boolean notNull(Object o) {
-        return null == o;
+        return null != o;
     }
 
     public static boolean isNull(Object o) {
-        return null != o;
+        return null == o;
     }
 
     public static boolean isTrue(boolean f) {
