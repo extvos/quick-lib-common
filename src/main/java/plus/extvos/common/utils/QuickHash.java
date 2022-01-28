@@ -4,10 +4,8 @@ import cn.hutool.core.util.HexUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
+import java.nio.CharBuffer;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -97,24 +95,22 @@ public class QuickHash {
         return hash(o.toString());
     }
 
-    public QuickHash hash(Reader reader) throws IOException {
+
+    public QuickHash hash(InputStream reader) throws IOException {
         if (null == digest) {
             return this;
         }
         digest.reset();
-        int n = -1;
-        char[] buf = new char[1024];
-        StringBuilder builder = new StringBuilder();
-
-        for (n = reader.read(buf); n > 0; ) {
-            builder.append(buf, 0, n);
+        int len = 0;
+        byte[] bytes = new byte[1024 * 100];
+        while ((len = reader.read(bytes)) > 0) {
+            digest.update(bytes, 0, len);
         }
-        digest.update(builder.toString().getBytes(StandardCharsets.UTF_8));
         return this;
     }
 
     public QuickHash hash(File file) throws IOException {
-        return hash(new FileReader(file));
+        return hash(new FileInputStream(file));
     }
 
     public String hex() {
