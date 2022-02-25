@@ -8,7 +8,7 @@
     <name>quick-lib-common</name>
     <description>通用公共库</description>
     <url>https://github.com/extvos/quickstart</url>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <properties>
