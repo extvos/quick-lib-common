@@ -24,9 +24,9 @@ public class ResultException extends RuntimeException {
     }
 
     /**
-     * Build a Result<> object with exception
+     * Build a Result&lt;?&gt; object with exception
      *
-     * @return Result<?>
+     * @return information as Result&lt;?&gt;
      */
     public Result<?> asResult() {
         return Result.message(getMessage()).with(data).failure(code);

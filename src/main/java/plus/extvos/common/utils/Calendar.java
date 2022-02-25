@@ -8,6 +8,7 @@ import java.util.Date;
 public class Calendar {
     /**
      * 获得当天是周几
+     * @return string of week day
      */
     public static String getWeekDay() {
         String[] weekDays = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};

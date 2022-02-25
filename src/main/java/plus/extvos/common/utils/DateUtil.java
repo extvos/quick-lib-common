@@ -22,7 +22,7 @@ import java.util.Date;
 
 /**
  * @author Mingcai SHEN
- * @apiNote: JDK 8  新日期类 格式化与字符串转换 工具类
+ * JDK 8  新日期类 格式化与字符串转换 工具类
  */
 public class DateUtil {
 
@@ -129,8 +129,9 @@ public class DateUtil {
     /**
      * 字符串转 LocalDateTime ，字符串格式 yyyy-MM-dd
      *
-     * @param localDateTime /
-     * @return /
+     * @param localDateTime in string
+     * @param pattern pattern in string
+     * @return localDateTime
      */
     public static LocalDateTime parseLocalDateTimeFormat(String localDateTime, String pattern) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
@@ -140,8 +141,9 @@ public class DateUtil {
     /**
      * 字符串转 LocalDateTime ，字符串格式 yyyy-MM-dd
      *
-     * @param localDateTime /
-     * @return /
+     * @param localDateTime in string
+     * @param dateTimeFormatter formatter
+     * @return localDateTime
      */
     public static LocalDateTime parseLocalDateTimeFormat(String localDateTime, DateTimeFormatter dateTimeFormatter) {
         return LocalDateTime.from(dateTimeFormatter.parse(localDateTime));
@@ -150,8 +152,8 @@ public class DateUtil {
     /**
      * 字符串转 LocalDateTime ，字符串格式 yyyy-MM-dd HH:mm:ss
      *
-     * @param localDateTime /
-     * @return /
+     * @param localDateTime in string
+     * @return localDateTime
      */
     public static LocalDateTime parseLocalDateTimeFormatyMdHms(String localDateTime) {
         return LocalDateTime.from(DFY_MD_HMS.parse(localDateTime));

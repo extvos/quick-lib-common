@@ -23,6 +23,7 @@ public class LocaleConfig {
 
     /**
      * 默认解析器 其中locale表示默认语言
+     * @return localeResolver for locale
      */
     @Bean
     @ConditionalOnMissingBean
@@ -34,6 +35,7 @@ public class LocaleConfig {
 
     /**
      * 默认拦截器 其中lang表示切换语言的参数名
+     * @return WebMvcConfigurer instance
      */
     @Bean
     @ConditionalOnMissingBean

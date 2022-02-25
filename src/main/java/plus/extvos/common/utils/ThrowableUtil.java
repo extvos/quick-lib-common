@@ -27,6 +27,8 @@ public class ThrowableUtil {
 
     /**
      * 获取堆栈信息
+     * @param throwable object
+     * @return string of stack info
      */
     public static String getStackTrace(Throwable throwable) {
         StringWriter sw = new StringWriter();

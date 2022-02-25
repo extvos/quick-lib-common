@@ -33,6 +33,7 @@ public class StringUtils extends cn.hutool.core.util.StrUtil {
     /**
      * 驼峰命名法工具
      *
+     * @param s original string
      * @return toCamelCase(" hello_world ") == "helloWorld"
      * toCapitalizeCamelCase("hello_world") == "HelloWorld"
      * toUnderScoreCase("helloWorld") = "hello_world"
@@ -64,7 +65,7 @@ public class StringUtils extends cn.hutool.core.util.StrUtil {
 
     /**
      * 驼峰命名法工具
-     *
+     * @param s original string
      * @return toCamelCase(" hello_world ") == "helloWorld"
      * toCapitalizeCamelCase("hello_world") == "HelloWorld"
      * toUnderScoreCase("helloWorld") = "hello_world"

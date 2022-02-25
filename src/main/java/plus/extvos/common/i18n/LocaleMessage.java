@@ -50,7 +50,7 @@ public class LocaleMessage {
     /**
      * get the locale from HttpRequestUtils
      *
-     * @return
+     * @return locale
      */
     public Locale getLocale() {
         Locale locale = RequestContext.probe().getLanguageLocaleByHttpHeader();

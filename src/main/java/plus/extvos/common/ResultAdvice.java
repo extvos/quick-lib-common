@@ -43,6 +43,10 @@ public class ResultAdvice implements ResponseBodyAdvice<Object> {
 
     /**
      * Generic Exception process
+     * @param request servlet request
+     * @param e exception object
+     * @param handlerMethod handler method
+     * @return Result for response
      */
     @ExceptionHandler(value = {NestedRuntimeException.class, ResultException.class, MethodArgumentNotValidException.class})
     public Result<?> exception(HttpServletRequest request, Exception e, HandlerMethod handlerMethod) {

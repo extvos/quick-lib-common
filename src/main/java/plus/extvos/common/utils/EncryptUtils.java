@@ -47,6 +47,9 @@ public class EncryptUtils {
 
     /**
      * 对称加密
+     * @param source in string
+     * @return encrypted string
+     * @throws Exception when error
      */
     public static String desEncrypt(String source) throws Exception {
         DESKeySpec desKeySpec = getDesKeySpec(source);
@@ -59,6 +62,9 @@ public class EncryptUtils {
 
     /**
      * 对称解密
+     * @param source in string
+     * @return decrypted string
+     * @throws Exception when error
      */
     public static String desDecrypt(String source) throws Exception {
         byte[] src = hex2byte(source.getBytes(StandardCharsets.UTF_8));
@@ -70,6 +76,11 @@ public class EncryptUtils {
         return new String(retByte);
     }
 
+    /**
+     *
+     * @param inStr bytes
+     * @return hex in string
+     */
     private static String byte2hex(byte[] inStr) {
         String stmp;
         StringBuilder out = new StringBuilder(inStr.length * 2);

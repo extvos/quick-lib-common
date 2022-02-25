@@ -40,6 +40,8 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 
     /**
      * 从静态变量applicationContext中取得Bean, 自动转型为所赋值对象的类型.
+     * @param requiredType required class type
+     * @return bean instance by type &lt;T&gt;
      */
     public static <T> T getBean(Class<T> requiredType) {
         assertContextInjected();
@@ -49,10 +51,11 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
     /**
      * 获取SpringBoot 配置信息
      *
+     * @param <T> class type
      * @param property     属性key
      * @param defaultValue 默认值
      * @param requiredType 返回类型
-     * @return /
+     * @return property by name in &lt;T&gt;
      */
     public static <T> T getProperties(String property, T defaultValue, Class<T> requiredType) {
         T result = defaultValue;
@@ -67,7 +70,7 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
      * 获取SpringBoot 配置信息
      *
      * @param property 属性key
-     * @return /
+     * @return properties in string
      */
     public static String getProperties(String property) {
         return getProperties(property, null, String.class);
@@ -76,9 +79,10 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
     /**
      * 获取SpringBoot 配置信息
      *
+     * @param <T> class type
      * @param property     属性key
      * @param requiredType 返回类型
-     * @return /
+     * @return properties in type &lt;T&gt;
      */
     public static <T> T getProperties(String property, Class<T> requiredType) {
         return getProperties(property, null, requiredType);

@@ -11,7 +11,7 @@ import java.security.spec.X509EncodedKeySpec;
 
 /**
  * @author Mingcai SHEN
- * @description Rsa 工具类，公钥私钥生成，加解密
+ * Rsa 工具类，公钥私钥生成，加解密
  **/
 public class RsaUtils {
 
@@ -126,7 +126,8 @@ public class RsaUtils {
      *
      * @param publicKeyText 公钥
      * @param text          待加密的文本
-     * @return /
+     * @return encrypted string
+     * @throws Exception when error
      */
     public static String encryptByPublicKey(String publicKeyText, String text) throws Exception {
         X509EncodedKeySpec x509EncodedKeySpec2 = new X509EncodedKeySpec(Base64.decodeStr(publicKeyText).getBytes());

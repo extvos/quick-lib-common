@@ -125,7 +125,7 @@ public class Pinyin {
      *
      * @param content 内容
      * @param sep     分隔符
-     * @return
+     * @return string with translated content and seperator.
      */
     public String translateWithSep(String content, String sep) {
         String result = this.translatePinyin(content);
@@ -137,7 +137,7 @@ public class Pinyin {
      * 拼音，带分隔符,默认逗号
      *
      * @param content 内容
-     * @return
+     * @return string with translated content
      */
     public String translateWithSep(String content) {
         String result = this.translatePinyin(content);
@@ -148,8 +148,8 @@ public class Pinyin {
     /**
      * 拼音数组，带分隔符
      *
-     * @param content
-     * @return
+     * @param content string
+     * @return string array of translated content
      */
     public String[] translateInArray(String content) {
         String result = this.translatePinyin(content);
@@ -165,7 +165,7 @@ public class Pinyin {
      * 将汉字翻译成拼音
      *
      * @param content 内容
-     * @return
+     * @return string of translated content
      */
     public String translate(String content) {
         String result = this.translatePinyin(content);
@@ -178,7 +178,7 @@ public class Pinyin {
      * 除去音调
      *
      * @param contents
-     * @return
+     * @return string with contents un-marked
      */
     private String unMark(String contents) {
         String content = contents;
@@ -221,7 +221,7 @@ public class Pinyin {
      *
      * @param content 内容
      * @param sep     分割符
-     * @return
+     * @return string of translated content without marks.
      */
     public String translateWithSepNoMark(String content, String sep) {
         String result = this.translateWithSep(content, sep);
@@ -231,8 +231,8 @@ public class Pinyin {
     /**
      * 不带音调拼音，带分隔符, 默认逗号
      *
-     * @param content
-     * @return
+     * @param content string
+     * @return string of translated content
      */
     public String translateWithSepNoMark(String content) {
         String result = this.translateWithSep(content, ",");
@@ -242,8 +242,8 @@ public class Pinyin {
     /**
      * 不带音调拼音
      *
-     * @param content
-     * @return
+     * @param content string
+     * @return string of translated without marks.
      */
     public String translateNoMark(String content) {
         String result = this.translate(content);
@@ -253,8 +253,8 @@ public class Pinyin {
     /**
      * 不带音调拼音数组，带分隔符
      *
-     * @param content
-     * @return
+     * @param content string
+     * @return string array of translated content
      */
     public String[] translateInArrayNoMark(String content) {
         String result = this.translatePinyin(content);
@@ -270,8 +270,8 @@ public class Pinyin {
     /**
      * 翻译为拼音首字母
      *
-     * @param content
-     * @return
+     * @param content string
+     * @return string of translated content in first character.
      */
     public String translateFirstChar(String content) {
         String[] result = this.translateInArray(content);

@@ -70,6 +70,8 @@ public class FileUtil {
 
     /**
      * 获取文件扩展名，不带 .
+     * @param filename filename in string
+     * @return extension in string
      */
     public static String getExtensionName(String filename) {
         if ((filename != null) && (filename.length() > 0)) {
@@ -83,6 +85,8 @@ public class FileUtil {
 
     /**
      * Java文件操作 获取不带扩展名的文件名
+     * @param filename filename in string
+     * @return filename without extension in string
      */
     public static String getFileNameNoEx(String filename) {
         if ((filename != null) && (filename.length() > 0)) {
@@ -96,6 +100,8 @@ public class FileUtil {
 
     /**
      * 文件大小转换
+     * @param size as long
+     * @return size in string
      */
     public static String getSize(long size) {
         String resultSize;
@@ -116,6 +122,9 @@ public class FileUtil {
 
     /**
      * inputStream 转 File
+     * @param ins InputStream
+     * @param name in String
+     * @return file object
      */
     static File inputStreamToFile(InputStream ins, String name) throws Exception {
         File file = new File(SYS_TEM_DIR + name);
@@ -134,6 +143,11 @@ public class FileUtil {
         return file;
     }
 
+    /**
+     * Get file type
+     * @param type string
+     * @return file type in string
+     */
     public static String getFileType(String type) {
         String[] documents = "txt doc pdf ppt pps xlsx xls docx".split(" ");
         String[] music = "mp3 wav wma mpa ram ra aac aif m4a".split(" ");
@@ -152,6 +166,12 @@ public class FileUtil {
         }
     }
 
+    /**
+     * check size limit
+     * @param maxSize in bytes
+     * @param size in bytes
+     * @return true if size less than maxSize
+     */
     public static boolean checkSize(long maxSize, long size) {
         // 1M
         int len = 1024 * 1024;
