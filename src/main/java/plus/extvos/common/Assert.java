@@ -2,6 +2,7 @@ package plus.extvos.common;
 
 import plus.extvos.common.exception.ResultException;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 
@@ -43,8 +44,8 @@ public class Assert {
         }
     }
 
-    public static void notEmpty(String s, ResultException... e) throws ResultException {
-        if (null == s || s.isEmpty()) {
+    public static void notEmpty(Serializable s, ResultException... e) throws ResultException {
+        if (null == s || s.toString().isEmpty()) {
             throw e.length > 0 ? e[0] : ResultException.badRequest("empty is not acceptable");
         }
     }
@@ -61,8 +62,8 @@ public class Assert {
         }
     }
 
-    public static void isEmpty(String s, ResultException... e) throws ResultException {
-        if (null != s && !s.isEmpty()) {
+    public static void isEmpty(Serializable s, ResultException... e) throws ResultException {
+        if (null != s && !s.toString().isEmpty()) {
             throw e.length > 0 ? e[0] : ResultException.badRequest("not empty is not acceptable");
         }
     }
