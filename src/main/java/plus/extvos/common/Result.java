@@ -96,24 +96,27 @@ public class Result<T> implements Serializable {
         return code;
     }
 
-    public void setCode(Integer code) {
+    public Result<T> setCode(Integer code) {
         this.code = code;
+        return this;
     }
 
     public String getMsg() {
         return msg;
     }
 
-    public void setMsg(String msg) {
+    public Result<T> setMsg(String msg) {
         this.msg = msg;
+        return this;
     }
 
     public T getData() {
         return data;
     }
 
-    public void setData(T data) {
+    public Result<T> setData(T data) {
         this.data = data;
+        return this;
     }
 
     public Result() {
@@ -124,32 +127,36 @@ public class Result<T> implements Serializable {
         return total;
     }
 
-    public void setTotal(Long total) {
+    public Result<T> setTotal(Long total) {
         this.total = total;
+        return this;
     }
 
     public Long getPage() {
         return page;
     }
 
-    public void setPage(Long page) {
+    public Result<T> setPage(Long page) {
         this.page = page;
+        return this;
     }
 
     public Long getPageSize() {
         return pageSize;
     }
 
-    public void setPageSize(Long pageSize) {
+    public Result<T> setPageSize(Long pageSize) {
         this.pageSize = pageSize;
+        return this;
     }
 
     public Long getCount() {
         return count;
     }
 
-    public void setCount(Long count) {
+    public Result<T> setCount(Long count) {
         this.count = count;
+        return this;
     }
 
     public Map<String, String> getHeaders() {
@@ -164,8 +171,9 @@ public class Result<T> implements Serializable {
         return error;
     }
 
-    public void setError(String error) {
+    public Result<T> setError(String error) {
         this.error = error;
+        return this;
     }
 
     public Result<T> paged(long total, long page, long pageSize) {
