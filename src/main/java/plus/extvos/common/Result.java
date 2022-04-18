@@ -47,6 +47,12 @@ public class Result<T> implements Serializable {
     private Long total;
 
     /**
+     * Total pages of records by query
+     */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Long totalPages;
+
+    /**
      * Current page num
      */
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -176,15 +182,25 @@ public class Result<T> implements Serializable {
         return this;
     }
 
+    public Long getTotalPages() {
+        return totalPages;
+    }
+
+    public void setTotalPages(Long totalPages) {
+        this.totalPages = totalPages;
+    }
+
     public Result<T> paged(long total, long page, long pageSize) {
         if (this.data instanceof Collection) {
             this.count = (long) ((Collection<?>) this.data).size();
             this.total = total;
             this.page = page;
             this.pageSize = pageSize;
+            this.totalPages = total / pageSize + (total % pageSize != 0 ? 1 : 0);
         }
         return this;
     }
+
 
     public Result<T> with(T o) {
         this.data = o;
