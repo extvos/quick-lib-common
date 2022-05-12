@@ -196,7 +196,7 @@ public class Result<T> implements Serializable {
             this.total = total;
             this.page = page;
             this.pageSize = pageSize;
-            this.totalPages = total / pageSize + (total % pageSize != 0 ? 1 : 0);
+            this.totalPages = pageSize > 0 ? total / pageSize + (total % pageSize != 0 ? 1 : 0) : 0;
         }
         return this;
     }
