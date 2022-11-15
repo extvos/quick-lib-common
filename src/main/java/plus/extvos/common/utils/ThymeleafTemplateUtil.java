@@ -1,8 +1,8 @@
 package plus.extvos.common.utils;
 
-import com.google.common.io.Resources;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
+import plus.extvos.common.io.Resources;
 
 import java.io.*;
 import java.util.Map;
@@ -62,9 +62,9 @@ public class ThymeleafTemplateUtil {
 
     public static Template resource(String file) {
         try {
-            return new Template(new FileReader(Resources.getResource(file).getFile()));
-        } catch (FileNotFoundException e) {
-            return new Template("");
+            return new Template(Resources.getResourceAsReader(file));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
