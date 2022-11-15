@@ -1,7 +1,6 @@
 package plus.extvos.common.utils;
 
 import com.google.common.io.Resources;
-import com.sun.istack.internal.NotNull;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
@@ -14,11 +13,11 @@ public class ThymeleafTemplateUtil {
         private TemplateEngine engin = new TemplateEngine();
         private String tmpl;
 
-        public Template(@NotNull String t) {
+        public Template(String t) {
             this.tmpl = t;
         }
 
-        public Template(@NotNull Reader reader) {
+        public Template(Reader reader) {
             StringBuilder sb = new StringBuilder();
             char[] bs = new char[1024];
             try {
@@ -35,7 +34,7 @@ public class ThymeleafTemplateUtil {
             this.tmpl = sb.toString();
         }
 
-        public Template(@NotNull InputStream is) {
+        public Template(InputStream is) {
             this(new InputStreamReader(is));
         }
 
