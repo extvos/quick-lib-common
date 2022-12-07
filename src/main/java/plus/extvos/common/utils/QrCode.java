@@ -82,8 +82,7 @@ public class QrCode {
 
             // Create a qr code with the url as content and a size of WxH px
             bitMatrix = writer.encode(contents, BarcodeFormat.QR_CODE, size, size, hints);
-            MatrixToImageConfig matrixConfig = new MatrixToImageConfig(
-                    frontColor, bgColor);
+            MatrixToImageConfig matrixConfig = new MatrixToImageConfig(0xFF000001, 0xFFFFFFFF);
             // Load QR image
             BufferedImage qrImage = MatrixToImageWriter.toBufferedImage(bitMatrix, matrixConfig);
 
@@ -117,22 +116,22 @@ public class QrCode {
         //开始绘制图片
 //        g2.setColor(Color.white);
 //        g2.drawRect(matrixWidth / 5 * 2, matrixHeigh / 5 * 2, matrixWidth / 5, matrixHeigh / 5);
-        g2.drawImage(logoImage, matrixWidth / 5 * 2, matrixHeigh / 5 * 2, matrixWidth / 5, matrixHeigh / 5, Color.WHITE, null);//绘制
+        g2.drawImage(logoImage, matrixWidth / 5 * 2+2, matrixHeigh / 5 * 2+2, matrixWidth / 5-4, matrixHeigh / 5-4, Color.WHITE, null);//绘制
         BasicStroke stroke = new BasicStroke(5, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
         g2.setStroke(stroke);// 设置笔画对象
         //指定弧度的圆角矩形
         RoundRectangle2D.Float round = new RoundRectangle2D.Float(matrixWidth / 5 * 2, matrixHeigh / 5 * 2, matrixWidth / 5, matrixHeigh / 5, 20, 20);
-        g2.setColor(Color.white);
+        g2.setColor(Color.WHITE);
 //        g2.fillRoundRect(matrixWidth / 5 * 2, matrixHeigh / 5 * 2, matrixWidth / 5, matrixHeigh / 5, 20, 20);
 //        g2.setColor(Color.black);
         g2.draw(round);// 绘制圆弧矩形
 
-        //设置logo 有一道灰色边框
-        BasicStroke stroke2 = new BasicStroke(1, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
-        g2.setStroke(stroke2);// 设置笔画对象
-        RoundRectangle2D.Float round2 = new RoundRectangle2D.Float(matrixWidth / 5 * 2 + 2, matrixHeigh / 5 * 2 + 2, matrixWidth / 5 - 4, matrixHeigh / 5 - 4, 20, 20);
-        g2.setColor(new Color(128, 128, 128));
-        g2.draw(round2);// 绘制圆弧矩形
+//        //设置logo 有一道灰色边框
+//        BasicStroke stroke2 = new BasicStroke(1, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
+//        g2.setStroke(stroke2);// 设置笔画对象
+//        RoundRectangle2D.Float round2 = new RoundRectangle2D.Float(matrixWidth / 5 * 2 + 2, matrixHeigh / 5 * 2 + 2, matrixWidth / 5 - 4, matrixHeigh / 5 - 4, 20, 20);
+//        g2.setColor(new Color(128, 128, 128));
+//        g2.draw(round2);// 绘制圆弧矩形
 
         g2.dispose();
         matrixImage.flush();
