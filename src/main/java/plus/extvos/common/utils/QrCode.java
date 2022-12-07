@@ -74,8 +74,9 @@ public class QrCode {
         public BufferedImage bufferedImage() throws Exception {
             Map<EncodeHintType, Object> hints = new HashMap<>();
             hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
-            hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+            hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
             hints.put(EncodeHintType.MARGIN, 1);
+//            hints.put(EncodeHintType.DATA_MATRIX_SHAPE, SymbolShapeHint.FORCE_RECTANGLE);
             QRCodeWriter writer = new QRCodeWriter();
             BitMatrix bitMatrix = null;
             ByteArrayOutputStream os = new ByteArrayOutputStream();
