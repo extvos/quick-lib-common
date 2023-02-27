@@ -8,13 +8,13 @@
     <name>quick-lib-common</name>
     <description>通用公共库</description>
     <url>https://github.com/extvos/quickstart</url>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <springboot.version>2.5.8</springboot.version>
+        <springboot.version>2.5.14</springboot.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
@@ -38,7 +38,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.6.4</version>
+            <version>5.8.11</version>
         </dependency>
         <!--        <dependency>-->
         <!--            <groupId>org.apache.commons</groupId>-->
