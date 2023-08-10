@@ -4,15 +4,14 @@ import cn.hutool.core.util.HexUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
-import java.nio.CharBuffer;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * @author Mingcai SHEN
@@ -120,6 +119,14 @@ public class QuickHash {
         return HexUtil.encodeHexStr(digest.digest());
     }
 
+    public String base64() {
+        if (null == digest) {
+            return "";
+        }
+        return Base64.getEncoder().encodeToString(digest.digest());
+//        return HexUtil.(digest.digest());
+    }
+
     public byte[] bytes() {
         if (null == digest) {
             return new byte[0];
@@ -154,10 +161,10 @@ public class QuickHash {
 
     public static void main(String[] args) {
         String src = "1231235413463457456874569856967809";
-        System.out.println("md5    > " + QuickHash.md5().hash(src).hex());
-        System.out.println("sha1   > " + QuickHash.sha1().hash(src).hex());
-        System.out.println("sha256 > " + QuickHash.sha256().hash(src).hex());
-        System.out.println("sha512 > " + QuickHash.sha512().hash(src).hex());
+        System.out.println("md5    > " + QuickHash.md5().hash(src).hex() + " > " + QuickHash.md5().hash(src).base64());
+        System.out.println("sha1   > " + QuickHash.sha1().hash(src).hex() + " > " + QuickHash.sha1().hash(src).base64());
+        System.out.println("sha256 > " + QuickHash.sha256().hash(src).hex() + " > " + QuickHash.sha256().hash(src).base64());
+        System.out.println("sha512 > " + QuickHash.sha512().hash(src).hex() + " > " + QuickHash.sha512().hash(src).base64());
         System.out.println("> " + String.join(",", QuickHash.sha1().hash(src).hexSegments(2, 4, 8)));
         System.out.println("> " + String.join(",", QuickHash.sha1().hash(src).hexSegments()));
     }
